@@ -129,11 +129,31 @@ const soundboard = document.getElementById('soundboard');
 sounds.forEach(sound => {
     const button = document.createElement('button');
     button.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded';
-    button.innerText = sound;
+    button.innerText = sound.split('/').pop();
     button.onclick = () => playSound(sound);
-    soundboard.appendChild(button);
+
+    const link = document.createElement('button');
+    link.href = sound;
+    link.innerText = 'Copier le lien';
+    link.className = 'block text-xs text-gray-600 text-center';
+    link.onclick = () => copyToClipboard(link, sound);
+
+    const container = document.createElement('div');
+    container.className = 'flex flex-col items-center'
+    container.appendChild(button);
+    container.appendChild(link);
+
+    soundboard.appendChild(container);
 });
 
 function playSound(soundFile) {
     new Audio(soundFile).play();
+}
+
+function copyToClipboard(link, text) {
+    navigator.clipboard.writeText(window.location.href + text);
+    link.innerText = 'Copié !';
+    setTimeout(() => {
+        link.innerText = 'Copier le lien !';
+    }, "1000");
 }
