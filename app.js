@@ -154,6 +154,6 @@ function copyToClipboard(link, text) {
     navigator.clipboard.writeText(window.location.href + text);
     link.innerText = 'Copié !';
     setTimeout(() => {
-        link.innerText = 'Copier le lien !';
+        link.innerText = 'Copier le lien';
     }, "1000");
 }
