@@ -134,13 +134,12 @@ sounds.forEach(sound => {
     button.onclick = () => playSound(sounds_path + sound);
 
     const link = document.createElement('button');
-    link.href = sound;
-    link.innerText = 'Copier le lien';
+    link.innerHTML = 'Copier le lien';
     link.className = 'block text-xs text-gray-600 text-center';
     link.onclick = () => copyToClipboard(link, sound);
 
     const container = document.createElement('div');
-    container.className = 'flex flex-col items-center'
+    container.className = 'flex flex-col items-center gap-2 p-2 border border-gray-300'
     container.appendChild(button);
     container.appendChild(link);
 
